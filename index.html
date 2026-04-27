@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Fast Delivery Food — Premium Delivery</title>
+    <style>
+        /* ===== RESET & FONTS ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @font-face {
+            font-family: 'Poppins';
+            src: url("./Poppins-Light.woff") format("woff");
+            font-weight: 300;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Poppins';
+            src: url("./Poppins-Regular.woff") format("woff");
+            font-weight: 400;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Poppins';
+            src: url("./Poppins-SemiBold.woff") format("woff");
+            font-weight: 600;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Poppins';
+            src: url("./Poppins-Bold.woff") format("woff");
+            font-weight: 700;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Poppins';
+            src: url("./Poppins-ExtraBold.woff") format("woff");
+            font-weight: 800;
+            font-display: swap;
+        }
+
+        body {
+            font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+            background: #FCAA00;  
+            padding: 45px 20px;
+            font-weight: 300;
+        }
+
+        .white-card {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 36px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+            overflow: hidden;
+            padding: 20px 0 30px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            padding: 8px 0 16px;
+            background: white;
+        }
+        .header__container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        /* Логотип: картинка и текст Foo одной высоты */
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 28px;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            color: #1e1e2a;
+            line-height: 1;
+        }
+        .logo-icon {
+            height: 36px;
+            width: auto;
+            display: block;
+        }
+        .logo span {
+            line-height: 1;
+            display: inline-block;
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .nav {
+            display: flex;
+            gap: 34px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .nav__link {
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            color: #1e1e2a;
+            transition: color 0.2s;
+        }
+
+        .nav__link:hover {
+            color: #e67e22;
+        }
+
+        .header__actions {
+            display: flex;
+            align-items: center;
+        }
+        .action-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f5f5f5;
+            padding: 6px 18px;
+            border-radius: 60px;
+            gap: 28px;
+            min-width: 260px;
+        }
+        .action-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .search-icon {
+            font-size: 18px;
+            opacity: 0.7;
+        }
+        .search-input {
+            border: none;
+            background: transparent;
+            font-size: 14px;
+            padding: 8px 0;
+            width: 130px;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+        }
+        .search-input::placeholder {
+            color: #999;
+            font-weight: 300;
+        }
+        .action-right {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .cart-icon {
+            font-size: 22px;
+        }
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -12px;
+            background: #e63946;
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== HERO СЕКЦИЯ — ЗАГОЛОВОК КАК НА КАРТИНКЕ ===== */
+        .hero {
+            padding: 30px 0 50px;
+            background: white;
+        }
+        .hero__container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+        .hero__content {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        /* ГЛАВНЫЙ ЗАГОЛОВОК: стиль "Fast" огромный оранжевый, "Food Delivery" чёрный,
+           позиционируется правее и со сдвигом вверх, как на скриншоте */
+        .hero__title {
+            margin-bottom: 24px;
+        }
+        .title-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        .hero__title-fast {
+            font-size: 120px;
+            font-weight: 800;
+            color: #e67e22;
+            line-height: 0.95;
+            letter-spacing: -3px;
+            display: inline-block;
+            margin-right: 20px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .hero__title-right {
+            display: inline-block;
+            vertical-align: top;
+            margin-top: 18px;      /* поднимаем блок "Food Delivery" выше относительно "Fast" */
+            margin-left: 8px;
+        }
+        .hero__title-food {
+            font-size: 46px;
+            font-weight: 800;
+            color: #1e1e2a;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            display: block;
+            white-space: nowrap;
+        }
+        .hero__title-delivery {
+            font-size: 46px;
+            font-weight: 800;
+            color: #1e1e2a;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            display: block;
+            white-space: nowrap;
+        }
+        /* вариант для адаптива — чтобы не ломалось */
+        @media (max-width: 1000px) {
+            .hero__title-fast {
+                font-size: 90px;
+                letter-spacing: -2px;
+            }
+            .hero__title-food, .hero__title-delivery {
+                font-size: 38px;
+            }
+            .hero__title-right {
+                margin-top: 12px;
+            }
+        }
+        @media (max-width: 760px) {
+            .hero__title-fast {
+                font-size: 70px;
+                display: block;
+                margin-right: 0;
+            }
+            .hero__title-right {
+                display: block;
+                margin-top: 4px;
+                margin-left: 0;
+            }
+            .hero__title-food, .hero__title-delivery {
+                font-size: 32px;
+                white-space: normal;
+                display: inline-block;
+            }
+            .hero__title-delivery {
+                margin-left: 6px;
+            }
+            .hero__title-right {
+                text-align: center;
+            }
+        }
+
+        .hero__description {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #5a5a6e;
+            margin-bottom: 34px;
+            max-width: 500px;
+            font-weight: 400;
+        }
+
+        .hero__buttons {
+            display: flex;
+            gap: 28px;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 44px;
+        }
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 34px;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .button--primary {
+            background: #2f2f2f;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        .button--primary:hover {
+            background: #d35400;
+            transform: scale(0.97);
+        }
+        .watch-wrapper {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+        .play-icon {
+            font-size: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background: #f0f0f0;
+            border-radius: 50%;
+            cursor: pointer;
+            text-decoration: none;
+            color: #1e1e2a;
+            transition: background 0.2s;
+        }
+        .play-icon:hover {
+            background: #e0e0e0;
+        }
+        .watch-text {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e1e2a;
+        }
+
+        /* РЕЙТИНГ: 3 отдельных строки (5 звезд, 5 star rating, based on 1788 reviews) */
+        .rating {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            align-items: flex-start;
+            margin-top: 8px;
+        }
+        .rating__stars {
+            color: #f5b041;
+            font-size: 22px;
+            letter-spacing: 3px;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+        .rating__text-line {
+            font-size: 14px;
+            color: #4a4a5e;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .hero__image {
+            flex: 1;
+            position: relative;
+            min-width: 280px;
+            display: flex;
+            justify-content: center;
+        }
+        .hero__img {
+            width: 100%;
+            max-width: 460px;
+            display: block;
+            margin: 0 auto;
+            border-radius: 48px;
+            filter: drop-shadow(0 20px 25px rgba(0,0,0,0.1));
+        }
+
+        /* АДАПТИВ ДЛЯ МАЛЕНЬКИХ ЭКРАНОВ */
+        @media (max-width: 1100px) {
+            .hero__container {
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 860px) {
+            .action-box {
+                min-width: 220px;
+                gap: 16px;
+            }
+            .search-input {
+                width: 90px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            body {
+                padding: 20px 16px;
+            }
+            .white-card {
+                border-radius: 32px;
+                padding: 12px 0 30px;
+            }
+            .header__container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .nav {
+                justify-content: center;
+            }
+            .hero {
+                padding: 20px 0 40px;
+            }
+            .hero__container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero__content {
+                text-align: center;
+            }
+            .hero__description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero__buttons {
+                justify-content: center;
+            }
+            .rating {
+                align-items: center;
+                text-align: center;
+            }
+            .hero__img {
+                max-width: 360px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero__title-fast {
+                font-size: 56px;
+            }
+            .hero__title-food, .hero__title-delivery {
+                font-size: 28px;
+            }
+            .button {
+                padding: 12px 26px;
+            }
+            .play-icon {
+                width: 42px;
+                height: 42px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="white-card">
+    <header class="header">
+        <div class="container header__container">
+            <div class="logo">
+                <!-- иконка шеф-повара + Foo ровно по высоте -->
+                <img src="chef-hat.png" class="logo-icon" alt="Chef hat">
+                <span>Foo</span>
+            </div>
+            <nav class="nav">
+                <a href="#" class="nav__link">Home</a>
+                <a href="#" class="nav__link">Menu</a>
+                <a href="#" class="nav__link">Contact</a>
+                <a href="#" class="nav__link">Shop</a>
+            </nav>
+            <div class="header__actions">
+                <div class="action-box">
+                    <div class="action-left">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" class="search-input" placeholder="Search">
+                    </div>
+                    <div class="action-right">
+                        <span class="cart-icon">🛒</span>
+                        <span class="cart-badge">2</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero__container">
+                <div class="hero__content">
+                    <!-- Заголовок в точности как на картинке:
+                         "Fast" огромный оранжевый, "Food Delivery" чёрный, 
+                         расположен выше уровня "Fast" (относительное позиционирование) -->
+                    <div class="hero__title">
+                        <div class="title-wrapper">
+                            <span class="hero__title-fast">Fast</span>
+                            <div class="hero__title-right">
+                                <span class="hero__title-food">Food</span>
+                                <span class="hero__title-delivery">Delivery</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="hero__description">
+                        Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque laudantium.
+                    </p>
+                    <div class="hero__buttons">
+                        <button class="button button--primary">Order Now</button>
+                        <div class="watch-wrapper">
+                            <a href="#" class="play-icon">▶</a>
+                            <span class="watch-text">Watch Video</span>
+                        </div>
+                    </div>
+                    <!-- Рейтинг строками как просили:
+                         ★★★★★
+                         5 star rating
+                         based on 1788 reviews -->
+                    <div class="rating">
+                        <div class="rating__stars">★★★★★</div>
+                        <div class="rating__text-line">5 star rating</div>
+                        <div class="rating__text-line">based on 1788 reviews</div>
+                    </div>
+                </div>
+                <div class="hero__image">
+                    <img src="17372 [Converted] 1.png" alt="Tasty meal" class="hero__img">
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+</body>
+</html>
